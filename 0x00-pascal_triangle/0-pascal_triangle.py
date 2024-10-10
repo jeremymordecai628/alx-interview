@@ -1,4 +1,8 @@
 #!/usr/bin/python3
+"""
+This module contains the PascalTriangle class,
+which can generate Pascal's Triangle up to a given number of rows.
+""" 
 def pascal_triangle(n):
     """
     Returns a list of lists of integers representing
