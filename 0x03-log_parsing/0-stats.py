@@ -5,14 +5,14 @@ Log Parsing Script
 This script reads input from stdin line by line, extracts the file size and HTTP status codes
 from each line, and calculates statistics.
 
-- Input format: 
+- Input format:
     <IP Address> - [<date>] "GET /projects/260 HTTP/1.1" <status code> <file size>
     - IP Address: any valid IPv4 address
     - date: any valid date enclosed in square brackets
     - status code: one of the expected HTTP status codes (200, 301, 400, 401, 403, 404, 405, 500)
     - file size: integer representing the file size
-    
-- Output: 
+
+- Output:
     - After every 10 lines or on keyboard interrupt (CTRL + C), print:
         1. Total file size so far: "File size: <total size>"
         2. Count of each HTTP status code (if it has appeared)
@@ -30,6 +30,7 @@ total_size = 0
 status_codes = {200: 0, 301: 0, 400: 0, 401: 0, 403: 0, 404: 0, 405: 0, 500: 0}
 line_count = 0
 
+
 def print_stats():
     """
     Print the current metrics:
@@ -41,6 +42,7 @@ def print_stats():
     for code in sorted(status_codes.keys()):
         if status_codes[code] > 0:
             print(f"{code}: {status_codes[code]}")
+
 
 try:
     for line in sys.stdin:
@@ -69,7 +71,8 @@ try:
                     print_stats()
 
         except (ValueError, IndexError):
-            # Ignore lines that don't match the expected format (e.g., invalid file size or status code)
+            # Ignore lines that don't match the expected format (e.g., invalid
+            # file size or status code)
             continue
 
 except KeyboardInterrupt:
